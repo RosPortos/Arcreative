@@ -1,0 +1,12 @@
+@function vw($target, $screen: 0) {
+    $size: 0;
+
+    @if $screen == 0 {
+        $size: 1440;
+    } @else if $screen == 1 {
+        $size: 428;
+    }
+
+    $vw-context: ($size * 0.01) * 1px;
+    @return calc($target/$vw-context) * 1vw;
+}

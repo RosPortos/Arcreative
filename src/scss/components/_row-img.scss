@@ -1,0 +1,18 @@
+.row-img {
+    margin-top: vw(60px);
+    margin-bottom: vw(70px);
+}
+.row-img-item {
+    display: flex;
+    gap: vw(20px);
+    margin-bottom: vw(20px);
+    img {
+        object-fit: cover;
+        border-radius: vw(11px);
+        height: vw(233px);
+        display: block;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

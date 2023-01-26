@@ -1,0 +1,16 @@
+// базовые подключения
+@import "vars";
+@import "mixins";
+@import "fonts";
+@import "null";
+@import "global";
+
+// подключения компонентов страницы
+@import "./components/fz";
+@import "./components/header";
+@import "./components/burger";
+@import "./components/promo";
+@import "./components/partners";
+@import "./components/row-img";
+@import "./components/img-text";
+@import "./components/provide";

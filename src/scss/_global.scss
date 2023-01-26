@@ -1,0 +1,115 @@
+* {
+    font-family: "adineue PRO Cyr", sans-serif;
+}
+
+body {
+    background: #0d0725;
+    &.scroll-hide {
+        overflow: hidden;
+    }
+}
+
+.container {
+    max-width: vw(1170px);
+    margin: 0 auto;
+    padding: 0 vw(15px);
+}
+
+.page {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.pd-sec {
+    padding: vw(70px) 0;
+}
+
+.soc-block {
+    display: flex;
+    align-items: center;
+    gap: vw(10px);
+    a {
+        width: vw(52px);
+        height: vw(52px);
+        background: linear-gradient(90deg, #b41281 4.17%, #8c23ca 100%);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: vw(10px);
+        position: relative;
+        z-index: 1;
+        &:hover {
+            &::before {
+                transform: scale(0);
+            }
+        }
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% - vw(4px));
+            height: calc(100% - vw(4px));
+            background-color: #000;
+            border-radius: 50%;
+            z-index: -1;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.btn {
+    font-weight: 700;
+    font-size: vw(15px);
+    line-height: vw(18px);
+    text-align: center;
+    text-transform: capitalize;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: vw(15px) vw(46px);
+    z-index: 1;
+    &.btn--border {
+        background: var(--pink-gr);
+        position: relative;
+        &::before {
+            position: absolute;
+            content: "";
+            width: calc(100% - vw(4px));
+            height: calc(100% - vw(4px));
+            background-color: #000;
+            z-index: -1;
+            transition: transform 0.2s ease-in-out;
+        }
+        &:hover {
+            &::before {
+                transform: scale(0);
+            }
+        }
+    }
+}
+
+.play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: vw(121px);
+    height: vw(121px);
+    background-image: url("../img/icon/icon-play.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: filter 0.1s ease-in-out;
+    filter: brightness(1);
+    &:hover {
+        filter: brightness(20);
+    }
+}
