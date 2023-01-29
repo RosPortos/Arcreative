@@ -1,6 +1,7 @@
 const logosBox = document.querySelectorAll('.clients__wrapper div');
 const parentImg = document.querySelector('.clients__wrapper');
 const tl = gsap.timeline();
+const tlImg = gsap.timeline();
 let startScale = 6;
 let size = 3;
 let subarray = [];
@@ -24,22 +25,67 @@ function getR(max) {
     return Math.floor(Math.random() * (max));
 }
 
-tl.to(logosImg, {
-    y: "random(-0, 20, 6)",
-    x: "random(-0, 20, 6)",
-    duration: 1,
-    ease: "none",
-    repeat: -1,
-    repeatRefresh: true
-})
+logosImg.forEach(can => {
+    const randomX = random(5, 10);
+    const randomY = random(5, 10);
+    const randomDelay = random(0, 1);
+    const randomTime = random(1, 3);
+    const randomTime2 = random(5, 10);
+    const randomAngle = random(2, 4);
 
+    TweenLite.set(can, {
+        x: randomX(-1),
+        y: randomX(1),
+    });
+
+    moveX(can, 1);
+    moveY(can, -1);
+    rotate(can, 1);
+
+    function rotate(target, direction) {
+
+        TweenLite.to(target, randomTime2(), {
+            rotation: randomAngle(direction),
+            delay: randomDelay(),
+            ease: Sine.easeInOut,
+            onComplete: rotate,
+            onCompleteParams: [target, direction * -1]
+        });
+    }
+
+    function moveX(target, direction) {
+
+        TweenLite.to(target, randomTime(), {
+            x: randomX(direction),
+            ease: Sine.easeInOut,
+            onComplete: moveX,
+            onCompleteParams: [target, direction * -1]
+        });
+    }
+
+    function moveY(target, direction) {
+
+        TweenLite.to(target, randomTime(), {
+            y: randomY(direction),
+            ease: Sine.easeInOut,
+            onComplete: moveY,
+            onCompleteParams: [target, direction * -1]
+        });
+    }
+
+    function random(min, max) {
+        const delta = max - min;
+        return (direction = 1) => (min + delta * Math.random()) * direction;
+    }
+});
 
 
 gsap.to(logosBoxAfter, {
-    x: "-100vw",
-    duration: 40,
+    x: "-=100vw",
+    duration: 50,
     ease: "none",
     repeat: -1,
+    yoyo: true
 });
 
 subarray.forEach((array, i) => {
