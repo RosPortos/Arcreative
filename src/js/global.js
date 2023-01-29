@@ -30,52 +30,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function videoBlock() {
 
-        let playButton = document.querySelector(".play-btn");
-        let previeBlock = document.querySelector('.preview');
-        let videoId = document.querySelector('.player').getAttribute('data-video-id');
+        let playButton = document.querySelectorAll(".play-btn");
+        let previeBlock = document.querySelectorAll('.preview');
+        let player = document.querySelectorAll('.player');
+        let playerVideoId;
+        let playerId;
 
-        let playerVideo;
-        window.YT.ready(function () {
-            playerVideo = new YT.Player('player', {
-                height: '360',
-                width: '640',
-                videoId: videoId,
-                events: {
-                    onReady: onReady,
-                    onStateChange: onStateChange,
-                },
-            });
-        });
 
-        function onReady() {
+        player.forEach(item => {
+            playerVideoId = item.getAttribute('data-video-id');
+            playerId = item.getAttribute('id');
+            let playerVideo;
 
-            let iframe = playerVideo.getIframe();
-            let videoTitle = iframe.getAttribute('data-video-title');
-
-            iframe.setAttribute('title', videoTitle);
-            playButton.addEventListener('click', () => {
-                play()
+            window.YT.ready(function () {
+                playerVideo = new YT.Player(playerId, {
+                    height: '360',
+                    width: '640',
+                    videoId: playerVideoId,
+                    events: {
+                        onReady: onReady,
+                        onStateChange: onStateChange,
+                    },
+                });
             });
 
-            function play() {
-                playerVideo.playVideo();
-                previeBlock.classList.add('hide');
+            function onReady() {
+
+                let iframe = playerVideo.getIframe();
+                let videoTitle = iframe.getAttribute('data-video-title');
+
+                iframe.setAttribute('title', videoTitle);
+                playButton.forEach(item => {
+                    item.addEventListener('click', () => {
+                        play()
+                    });
+                })
+
+
+                function play() {
+                    playerVideo.playVideo();
+                    previeBlock.classList.add('hide');
+                }
             }
-        }
 
-        function onStateChange(e) {
+            function onStateChange(e) {
 
-            if (e.data == 2) {
-                previeBlock.classList.remove('hide');
+                if (e.data == 2) {
+                    previeBlock.classList.remove('hide');
+                }
+
+                if (e.data == 0) {
+                    previeBlock.classList.remove('hide');
+                }
+
             }
+        })
 
-            if (e.data == 0) {
-                previeBlock.classList.remove('hide');
-            }
 
-        }
+
+
+
+
+
+
+
     }
 
     videoBlock();
 
+
+
+
+
 });
+
+
+
+
+

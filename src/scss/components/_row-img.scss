@@ -6,6 +6,9 @@
     display: flex;
     gap: vw(20px);
     margin-bottom: vw(20px);
+    > div {
+        position: relative;
+    }
     img {
         object-fit: cover;
         border-radius: vw(11px);
