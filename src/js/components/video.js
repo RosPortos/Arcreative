@@ -11,13 +11,9 @@ function videoBlock() {
         let switchStatus = 0;
         let playerVideo;
 
-        document.ready(function () {
+        window.YT.ready(function () {
             playerVideo = new YT.Player(playerId, {
                 videoId: playerVideoId,
-                playerVars: {
-                    enablejsapi: 1,
-                    origin: window.location.origin,
-                },
                 events: {
                     onReady: onReady,
                     onStateChange: onStateChange,
@@ -73,7 +69,6 @@ function videoBlock() {
         window.YT.ready(function () {
             playerVideo = new YT.Player(playerId, {
                 videoId: playerVideoId,
-
                 playerVars: {
                     controls: 0,
                     showinfo: 0,
@@ -85,16 +80,13 @@ function videoBlock() {
                     onStateChange: onStateChange,
                 },
             });
+
         });
 
         function onReady() {
             let iframe = playerVideo.getIframe();
             let videoTitle = iframe.getAttribute('data-video-title');
             iframe.setAttribute('title', videoTitle);
-
-            previeBlock.addEventListener('mouseenter', function () {
-                play();
-            });
         }
 
         function play() {
@@ -102,6 +94,9 @@ function videoBlock() {
             previeBlock.classList.add('hide');
         }
 
+        previeBlock.addEventListener('mouseenter', function () {
+            play();
+        });
 
 
         function onStateChange(e) {
