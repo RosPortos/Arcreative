@@ -8,6 +8,7 @@
     margin-bottom: vw(20px);
     > div {
         position: relative;
+        min-width: 348px;
     }
     img {
         object-fit: cover;

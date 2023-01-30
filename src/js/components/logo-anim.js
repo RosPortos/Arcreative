@@ -77,7 +77,9 @@ logosImg.forEach(can => {
         const delta = max - min;
         return (direction = 1) => (min + delta * Math.random()) * direction;
     }
+
 });
+
 
 
 gsap.to(logosBoxAfter, {
@@ -105,6 +107,10 @@ subarray.forEach((array, i) => {
 
 
 })
+
+
+
+
 
 
 

@@ -1,0 +1,39 @@
+.video-wrapper {
+    position: relative;
+}
+
+.video-hover-play {
+    .play-btn {
+        display: none;
+    }
+}
+
+.player {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: vw(3px);
+    top: vw(3px);
+    z-index: -1;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: vw(50px);
+}
+
+.preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: opacity 0.3s ease-in-out;
+    &.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
