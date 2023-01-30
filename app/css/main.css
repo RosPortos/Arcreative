@@ -582,7 +582,7 @@ h3 span {
 }
 .row-img-item > div {
   position: relative;
-  min-width: 348px;
+  min-width: 24.1666666667vw;
 }
 .row-img-item img {
   -o-object-fit: cover;
@@ -632,6 +632,9 @@ h3 span {
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+}
+.img-text__img .player {
+  border-radius: 3.4722222222vw;
 }
 
 .img-text__text {
@@ -922,6 +925,9 @@ h3 span {
   position: relative;
 }
 
+.video-wrapper-hover {
+  z-index: 1;
+}
 .video-wrapper-hover .play-btn {
   display: none;
 }
@@ -935,7 +941,7 @@ h3 span {
   z-index: -1;
   width: calc(100% - 6px);
   height: calc(100% - 6px);
-  border-radius: 3.4722222222vw;
+  border-radius: 0.6944444444vw;
 }
 
 .preview {
@@ -955,5 +961,6 @@ h3 span {
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+  border-radius: 0.6944444444vw;
 }
 /*# sourceMappingURL=main.css.map */
