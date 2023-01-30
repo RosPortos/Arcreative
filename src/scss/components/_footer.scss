@@ -88,5 +88,10 @@
     }
     .soc-block {
         width: fit-content;
+        a {
+            &::before {
+                background-color: #0e1115;
+            }
+        }
     }
 }
