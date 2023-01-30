@@ -274,6 +274,8 @@ h3 span {
 .fz18 {
   font-size: 1.25vw;
   line-height: 161.55%;
+  font-weight: 300;
+  color: #ffffff;
 }
 
 .fz42 {
@@ -462,7 +464,26 @@ h3 span {
 .promo .swiper {
   height: 100%;
 }
+.promo.height-auto {
+  height: auto;
+  margin-bottom: 30px;
+}
+.promo.padding-big .container {
+  padding: 10.4166666667vw 1.0416666667vw;
+}
+.promo.bottom-shadow .promo-item::before {
+  position: absolute;
+  content: "";
+  background: linear-gradient(180deg, rgba(13, 7, 37, 0) 0%, #0d0725 100%);
+  height: 166px;
+  width: 100%;
+  left: 0;
+  bottom: -1px;
+}
 
+.promo-item {
+  position: relative;
+}
 .promo-item img {
   position: absolute;
   width: 100%;
@@ -473,9 +494,11 @@ h3 span {
   -o-object-fit: cover;
   object-fit: cover;
 }
-
-.promo-ofer {
-  max-width: 41.3888888889vw;
+.promo-item p {
+  font-weight: 300;
+  color: #ffffff;
+  margin-top: 26px;
+  max-width: 568px;
 }
 
 .promo__btn {
@@ -890,6 +913,9 @@ h3 span {
 .footer__right .soc-block {
   width: -moz-fit-content;
   width: fit-content;
+}
+.footer__right .soc-block a::before {
+  background-color: #0e1115;
 }
 
 .video-wrapper {
