@@ -233,18 +233,21 @@ var partnersSwiper = new Swiper(".partners-swiper", {
 
 function videoBlock() {
   var videoWrap = document.querySelectorAll('.video-wrapper');
+  var videoWrapHover = document.querySelectorAll('.video-wrapper-hover');
   videoWrap.forEach(function (item) {
-    var playButton = item.querySelector(".play-btn");
     var previeBlock = item.querySelector('.preview');
     var player = item.querySelector('.player');
     var playerVideoId = player.getAttribute('data-video-id');
     var playerId = player.getAttribute('id');
+    var switchStatus = 0;
     var playerVideo;
-    window.YT.ready(function () {
+    document.ready(function () {
       playerVideo = new YT.Player(playerId, {
-        height: '360',
-        width: '640',
         videoId: playerVideoId,
+        playerVars: {
+          enablejsapi: 1,
+          origin: window.location.origin
+        },
         events: {
           onReady: onReady,
           onStateChange: onStateChange
@@ -255,23 +258,79 @@ function videoBlock() {
       var iframe = playerVideo.getIframe();
       var videoTitle = iframe.getAttribute('data-video-title');
       iframe.setAttribute('title', videoTitle);
-      playButton.addEventListener('click', function () {
+      previeBlock.addEventListener('click', function () {
         play();
       });
-      function play() {
-        playerVideo.playVideo();
-        previeBlock.classList.add('hide');
-      }
+    }
+    function play() {
+      playerVideo.playVideo();
+      previeBlock.classList.add('hide');
     }
     function onStateChange(e) {
       if (e.data == 2) {
         previeBlock.classList.remove('hide');
+        previeBlock.classList.remove('not-visible');
+        switchStatus++;
+      }
+      if (e.data > 2 && switchStatus > 0) {
+        previeBlock.classList.add('not-visible');
+        switchStatus = 0;
       }
       if (e.data == 0) {
         previeBlock.classList.remove('hide');
+        previeBlock.classList.remove('not-visible');
       }
     }
-    item.addEventListener('click', function () {});
+  });
+  videoWrapHover.forEach(function (item) {
+    var previeBlock = item.querySelector('.preview');
+    var player = item.querySelector('.player');
+    var playerVideoId = player.getAttribute('data-video-id');
+    var playerId = player.getAttribute('id');
+    var switchStatus = 0;
+    var playerVideo;
+    window.YT.ready(function () {
+      playerVideo = new YT.Player(playerId, {
+        videoId: playerVideoId,
+        playerVars: {
+          controls: 0,
+          showinfo: 0,
+          enablejsapi: 1,
+          origin: window.location.origin
+        },
+        events: {
+          onReady: onReady,
+          onStateChange: onStateChange
+        }
+      });
+    });
+    function onReady() {
+      var iframe = playerVideo.getIframe();
+      var videoTitle = iframe.getAttribute('data-video-title');
+      iframe.setAttribute('title', videoTitle);
+      previeBlock.addEventListener('mouseenter', function () {
+        play();
+      });
+    }
+    function play() {
+      playerVideo.playVideo();
+      previeBlock.classList.add('hide');
+    }
+    function onStateChange(e) {
+      if (e.data == 2) {
+        previeBlock.classList.remove('hide');
+        previeBlock.classList.remove('not-visible');
+        switchStatus++;
+      }
+      if (e.data > 2 && switchStatus > 0) {
+        previeBlock.classList.add('not-visible');
+        switchStatus = 0;
+      }
+      if (e.data == 0) {
+        previeBlock.classList.remove('hide');
+        previeBlock.classList.remove('not-visible');
+      }
+    }
   });
 }
 videoBlock();

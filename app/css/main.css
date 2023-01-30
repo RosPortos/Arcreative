@@ -210,8 +210,7 @@ body.scroll-hide {
   background-image: url("../img/icon/icon-play.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  transition: filter 0.1s ease-in-out;
-  filter: brightness(1);
+  cursor: pointer;
 }
 .play-btn:hover {
   filter: brightness(20);
@@ -897,7 +896,7 @@ h3 span {
   position: relative;
 }
 
-.video-hover-play .play-btn {
+.video-wrapper-hover .play-btn {
   display: none;
 }
 
@@ -921,7 +920,7 @@ h3 span {
   top: 0;
   transition: opacity 0.3s ease-in-out;
 }
-.preview.hide {
+.preview.hide, .preview.not-visible {
   opacity: 0;
   pointer-events: none;
 }
