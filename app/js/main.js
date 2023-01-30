@@ -22,52 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (window.innerWidth > 991) {
     headerHide();
   }
-  function videoBlock() {
-    var playButton = document.querySelectorAll(".play-btn");
-    var previeBlock = document.querySelectorAll('.preview');
-    var player = document.querySelectorAll('.player');
-    var playerVideoId;
-    var playerId;
-    player.forEach(function (item) {
-      playerVideoId = item.getAttribute('data-video-id');
-      playerId = item.getAttribute('id');
-      var playerVideo;
-      window.YT.ready(function () {
-        playerVideo = new YT.Player(playerId, {
-          height: '360',
-          width: '640',
-          videoId: playerVideoId,
-          events: {
-            onReady: onReady,
-            onStateChange: onStateChange
-          }
-        });
-      });
-      function onReady() {
-        var iframe = playerVideo.getIframe();
-        var videoTitle = iframe.getAttribute('data-video-title');
-        iframe.setAttribute('title', videoTitle);
-        playButton.forEach(function (item) {
-          item.addEventListener('click', function () {
-            play();
-          });
-        });
-        function play() {
-          playerVideo.playVideo();
-          previeBlock.classList.add('hide');
-        }
-      }
-      function onStateChange(e) {
-        if (e.data == 2) {
-          previeBlock.classList.remove('hide');
-        }
-        if (e.data == 0) {
-          previeBlock.classList.remove('hide');
-        }
-      }
-    });
-  }
-  videoBlock();
 });
 "use strict";
 
@@ -77,7 +31,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-var logosBox = document.querySelectorAll('.clients__wrapper div');
+var logosBox = document.querySelectorAll('.clients__wrapper .box-img');
 var parentImg = document.querySelector('.clients__wrapper');
 var tl = gsap.timeline();
 var tlImg = gsap.timeline();
@@ -90,8 +44,8 @@ logosBox.forEach(function (item) {
   var clone = item.cloneNode(true);
   parentImg.appendChild(clone);
 });
-var logos = _toConsumableArray(document.querySelectorAll('.clients__wrapper div'));
-var logosBoxAfter = document.querySelectorAll('.clients__wrapper div');
+var logos = _toConsumableArray(document.querySelectorAll('.clients__wrapper .box-img'));
+var logosBoxAfter = document.querySelectorAll('.clients__wrapper .box-img');
 var logosImg = document.querySelectorAll('.clients__wrapper img');
 for (var i = 0; i < Math.ceil(logos.length / size); i++) {
   subarray[i] = logos.slice(i * size, i * size + size);
@@ -275,5 +229,51 @@ var partnersSwiper = new Swiper(".partners-swiper", {
       },
   }, */
 });
+"use strict";
+
+function videoBlock() {
+  var videoWrap = document.querySelectorAll('.video-wrapper');
+  videoWrap.forEach(function (item) {
+    var playButton = item.querySelector(".play-btn");
+    var previeBlock = item.querySelector('.preview');
+    var player = item.querySelector('.player');
+    var playerVideoId = player.getAttribute('data-video-id');
+    var playerId = player.getAttribute('id');
+    var playerVideo;
+    window.YT.ready(function () {
+      playerVideo = new YT.Player(playerId, {
+        height: '360',
+        width: '640',
+        videoId: playerVideoId,
+        events: {
+          onReady: onReady,
+          onStateChange: onStateChange
+        }
+      });
+    });
+    function onReady() {
+      var iframe = playerVideo.getIframe();
+      var videoTitle = iframe.getAttribute('data-video-title');
+      iframe.setAttribute('title', videoTitle);
+      playButton.addEventListener('click', function () {
+        play();
+      });
+      function play() {
+        playerVideo.playVideo();
+        previeBlock.classList.add('hide');
+      }
+    }
+    function onStateChange(e) {
+      if (e.data == 2) {
+        previeBlock.classList.remove('hide');
+      }
+      if (e.data == 0) {
+        previeBlock.classList.remove('hide');
+      }
+    }
+    item.addEventListener('click', function () {});
+  });
+}
+videoBlock();
 "use strict";
 //# sourceMappingURL=main.js.map

@@ -120,10 +120,10 @@ body {
         position: absolute;
         content: "";
         background: var(--pink-gr);
-        width: 440px;
-        height: 400px;
+        width: vw(440px);
+        height: vw(400px);
         right: 0;
-        top: -3px;
+        top: vw(-3px);
         z-index: -1;
     }
 }

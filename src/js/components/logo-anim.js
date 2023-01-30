@@ -1,4 +1,4 @@
-const logosBox = document.querySelectorAll('.clients__wrapper div');
+const logosBox = document.querySelectorAll('.clients__wrapper .box-img');
 const parentImg = document.querySelector('.clients__wrapper');
 const tl = gsap.timeline();
 const tlImg = gsap.timeline();
@@ -13,8 +13,8 @@ logosBox.forEach(item => {
     parentImg.appendChild(clone);
 });
 
-const logos = [...document.querySelectorAll('.clients__wrapper div')]
-const logosBoxAfter = document.querySelectorAll('.clients__wrapper div');
+const logos = [...document.querySelectorAll('.clients__wrapper .box-img')]
+const logosBoxAfter = document.querySelectorAll('.clients__wrapper .box-img');
 const logosImg = document.querySelectorAll('.clients__wrapper img');
 
 for (let i = 0; i < Math.ceil(logos.length / size); i++) {
