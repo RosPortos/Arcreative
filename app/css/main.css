@@ -120,7 +120,7 @@ body.scroll-hide {
   padding: 0 1.0416666667vw;
 }
 
-.page {
+.page-site {
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -226,7 +226,7 @@ body.scroll-hide {
   width: 30.5555555556vw;
   height: 27.7777777778vw;
   right: 0;
-  top: -0.2083333333vw;
+  top: -0.2777777778vw;
   z-index: -1;
 }
 
@@ -537,37 +537,23 @@ h3 span {
 }
 
 .partners__wrapper {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 3.4722222222vw;
 }
 .partners__wrapper a {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  margin-right: 6.25vw;
+  width: 14.9305555556vw;
 }
 .partners__wrapper a img {
   width: 100%;
-  max-height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-.partners__wrapper a:last-child {
-  margin-right: 0;
-}
-.partners__wrapper .swiper-button-next {
-  right: -2.916667vw;
-}
-.partners__wrapper .swiper-button-prev {
-  left: -2.916667vw;
-}
-.partners__wrapper .swiper-button-next,
-.partners__wrapper .swiper-button-prev {
-  display: none;
-}
-.partners__wrapper .swiper {
-  height: 3.4722222222vw;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .row-img {
@@ -579,17 +565,41 @@ h3 span {
   display: flex;
   gap: 1.3888888889vw;
   margin-bottom: 1.3888888889vw;
+  position: relative;
+  height: 16.1805555556vw;
 }
 .row-img-item > div {
-  position: relative;
-  min-width: 24.1666666667vw;
+  width: 25.6944444444vw;
+  min-width: 25.6944444444vw;
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  height: 16.1805555556vw;
+  border-radius: 0.7638888889vw;
+  overflow: hidden;
+  display: flex;
+}
+.row-img-item > div::after {
+  content: "";
+  width: 1.3888888889vw;
+  min-width: 1.3888888889vw;
+  height: 100%;
 }
 .row-img-item img {
   -o-object-fit: cover;
   object-fit: cover;
-  border-radius: 0.7638888889vw;
-  height: 16.1805555556vw;
+  width: calc(100% - 1.3888888889vw);
+  height: 100%;
+  object-fit: cover;
   display: block;
+  margin-right: 2.0833333333vw;
+  border-radius: 0.7638888889vw;
+}
+.row-img-item .preview {
+  width: calc(100% - 20px);
+}
+.row-img-item .player {
+  width: calc(100% - 25px);
 }
 .row-img-item:last-child {
   margin-bottom: 0;

@@ -128,7 +128,14 @@ function menu() {
 menu();
 function headerHide() {
   var header = document.querySelector(".header");
+  var page = document.querySelector(".page-site");
+  var scrolledWindow = scrollY;
   var scrollPrev = 0;
+  if (scrolledWindow > 10) {
+    header.classList.add('header-black');
+  } else {
+    header.classList.remove('header-black');
+  }
   window.addEventListener('scroll', function () {
     var scrolled = scrollY;
     if (scrolled > 10) {
@@ -194,6 +201,77 @@ function enableScroll() {
 }
 "use strict";
 
+function rowAnim(direction, elements) {
+  var blocks = gsap.utils.toArray(elements);
+  var videoWrapHover = document.querySelectorAll('.video-wrapper-hover');
+  var currentWidth = 0;
+  var prevWidth = 0;
+  var widest;
+  blocks.forEach(function (el, i) {
+    var width = gsap.getProperty(el, "width");
+    if (width > prevWidth) {
+      widest = width;
+    }
+    gsap.set(el, {
+      x: currentWidth
+    });
+    currentWidth += width;
+    prevWidth = width;
+  });
+  var totalWidth = currentWidth;
+  videoWrapHover.forEach(function (item) {
+    item.addEventListener('mouseover', function () {
+      tl.pause();
+    });
+    item.addEventListener('mouseout', function () {
+      tl.play();
+    });
+  });
+  var tl = gsap.to(blocks, {
+    x: "".concat(direction, "=").concat(totalWidth),
+    repeat: -1,
+    duration: 25,
+    ease: "none",
+    repeatRefresh: true,
+    modifiers: {
+      x: gsap.utils.unitize(function (x) {
+        return gsap.utils.wrap(-widest, totalWidth - widest, x);
+      })
+    }
+  });
+}
+rowAnim('-', ".row-img-item.left-move >div");
+rowAnim('+', ".row-img-item.right-move >div");
+"use strict";
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var anchors = document.querySelectorAll('a.scroll-to');
+var _iterator = _createForOfIteratorHelper(anchors),
+  _step;
+try {
+  var _loop = function _loop() {
+    var anchor = _step.value;
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      var blockID = anchor.getAttribute('href');
+      document.querySelector(blockID).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  };
+  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+    _loop();
+  }
+} catch (err) {
+  _iterator.e(err);
+} finally {
+  _iterator.f();
+}
+"use strict";
+
 var promoSwiper = new Swiper(".promo-swiper", {
   slidesPerView: 1,
   spaceBetween: 0,
@@ -234,10 +312,14 @@ document.addEventListener('DOMContentLoaded', function () {
   function videoBlock() {
     var videoWrap = document.querySelectorAll('.video-wrapper');
     var videoWrapHover = document.querySelectorAll('.video-wrapper-hover');
+    var playerList = document.querySelectorAll('.player');
+    playerList.forEach(function (el, i) {
+      el.setAttribute('id', "player".concat(i));
+    });
     videoWrap.forEach(function (item) {
       var previeBlock = item.querySelector('.preview');
       var player = item.querySelector('.player');
-      var playerVideoId = player.getAttribute('data-video-id');
+      var playerVideoId = previeBlock.getAttribute('data-video-id');
       var playerId = player.getAttribute('id');
       var switchStatus = 0;
       var playerVideo;
@@ -245,14 +327,17 @@ document.addEventListener('DOMContentLoaded', function () {
         playerVideo = new YT.Player(playerId, {
           videoId: playerVideoId,
           events: {
-            onStateChange: onStateChange
+            'onReady': onPlayerReady,
+            'onStateChange': onStateChange
           }
         });
       });
-      previeBlock.addEventListener('click', function () {
-        playerVideo.playVideo();
-        previeBlock.classList.add('hide');
-      });
+      function onPlayerReady() {
+        previeBlock.addEventListener('click', function () {
+          playerVideo.playVideo();
+          previeBlock.classList.add('hide');
+        });
+      }
       function onStateChange(e) {
         if (e.data == 2) {
           previeBlock.classList.remove('hide');
@@ -272,11 +357,11 @@ document.addEventListener('DOMContentLoaded', function () {
     videoWrapHover.forEach(function (item) {
       var previeBlock = item.querySelector('.preview');
       var player = item.querySelector('.player');
-      var playerVideoId = player.getAttribute('data-video-id');
+      var playerVideoId = previeBlock.getAttribute('data-video-id');
       var playerId = player.getAttribute('id');
       var playerVideo;
       window.YT.ready(function () {
-        playerVideo = new YT.Player(playerId, {
+        playerVideo = new window.YT.Player(playerId, {
           videoId: playerVideoId,
           playerVars: {
             'muted': 1,
@@ -287,20 +372,22 @@ document.addEventListener('DOMContentLoaded', function () {
             'loop': 1,
             'showinfo': 0,
             'modestbranding': 1
+          },
+          events: {
+            'onReady': onPlayerReady
           }
         });
       });
-      item.addEventListener('mouseover', function () {
-        playerVideo.playVideo();
-        setTimeout(function () {
-          return playerVideo.playVideo();
-        }, 500);
-        previeBlock.classList.add('hide');
-      });
-      item.addEventListener('mouseout', function () {
-        playerVideo.pauseVideo();
-        previeBlock.classList.remove('hide');
-      });
+      function onPlayerReady() {
+        item.addEventListener('mouseover', function () {
+          playerVideo.playVideo();
+          previeBlock.classList.add('hide');
+        });
+        item.addEventListener('mouseout', function () {
+          playerVideo.pauseVideo();
+          previeBlock.classList.remove('hide');
+        });
+      }
     });
   }
   videoBlock();

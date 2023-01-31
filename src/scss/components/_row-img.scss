@@ -6,15 +6,39 @@
     display: flex;
     gap: vw(20px);
     margin-bottom: vw(20px);
+    position: relative;
+    height: vw(233px);
     > div {
-        position: relative;
-        min-width: vw(348px);
+        width: vw(370px);
+        min-width: vw(370px);
+        position: absolute;
+        left: 0;
+        display: inline-block;
+        height: vw(233px);
+        border-radius: vw(11px);
+        overflow: hidden;
+        display: flex;
+        &::after {
+            content: "";
+            width: vw(20px);
+            min-width: vw(20px);
+            height: 100%;
+        }
     }
     img {
         object-fit: cover;
-        border-radius: vw(11px);
-        height: vw(233px);
+        width: calc(100% - vw(20px));
+        height: 100%;
+        object-fit: cover;
         display: block;
+        margin-right: vw(30px);
+        border-radius: vw(11px);
+    }
+    .preview {
+        width: calc(100% - 20px);
+    }
+    .player {
+        width: calc(100% - 25px);
     }
     &:last-child {
         margin-bottom: 0;

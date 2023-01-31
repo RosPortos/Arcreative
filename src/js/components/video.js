@@ -3,11 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const videoWrap = document.querySelectorAll('.video-wrapper')
         const videoWrapHover = document.querySelectorAll('.video-wrapper-hover')
+        const playerList = document.querySelectorAll('.player');
+
+        playerList.forEach((el, i) => {
+            el.setAttribute('id', `player${i}`)
+        });
 
         videoWrap.forEach(item => {
             let previeBlock = item.querySelector('.preview');
             let player = item.querySelector('.player');
-            let playerVideoId = player.getAttribute('data-video-id');
+            let playerVideoId = previeBlock.getAttribute('data-video-id');
             let playerId = player.getAttribute('id');
             let switchStatus = 0;
             let playerVideo;
@@ -16,15 +21,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 playerVideo = new YT.Player(playerId, {
                     videoId: playerVideoId,
                     events: {
-                        onStateChange: onStateChange,
+                        'onReady': onPlayerReady,
+                        'onStateChange': onStateChange,
                     },
                 });
             });
 
-            previeBlock.addEventListener('click', () => {
-                playerVideo.playVideo();
-                previeBlock.classList.add('hide');
-            });
+            function onPlayerReady() {
+                previeBlock.addEventListener('click', () => {
+                    playerVideo.playVideo();
+                    previeBlock.classList.add('hide');
+                });
+            }
 
             function onStateChange(e) {
                 if (e.data == 2) {
@@ -48,12 +56,12 @@ document.addEventListener('DOMContentLoaded', function () {
         videoWrapHover.forEach(item => {
             let previeBlock = item.querySelector('.preview');
             let player = item.querySelector('.player');
-            let playerVideoId = player.getAttribute('data-video-id');
+            let playerVideoId = previeBlock.getAttribute('data-video-id');
             let playerId = player.getAttribute('id');
             let playerVideo;
 
             window.YT.ready(function () {
-                playerVideo = new YT.Player(playerId, {
+                playerVideo = new window.YT.Player(playerId, {
                     videoId: playerVideoId,
                     playerVars: {
                         'muted': 1,
@@ -65,42 +73,28 @@ document.addEventListener('DOMContentLoaded', function () {
                         'showinfo': 0,
                         'modestbranding': 1
                     },
+                    events: {
+                        'onReady': onPlayerReady,
+                    }
                 });
             });
 
+            function onPlayerReady() {
+                item.addEventListener('mouseover', function () {
+                    playerVideo.playVideo()
+                    previeBlock.classList.add('hide')
+                });
 
-            item.addEventListener('mouseover', function () {
-                playerVideo.playVideo();
-                setTimeout(() => playerVideo.playVideo(), 500)
-                previeBlock.classList.add('hide')
-            });
-
-            item.addEventListener('mouseout', function () {
-                playerVideo.pauseVideo();
-                previeBlock.classList.remove('hide')
-            });
-
-
+                item.addEventListener('mouseout', function () {
+                    playerVideo.pauseVideo()
+                    previeBlock.classList.remove('hide')
+                });
+            }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
-    videoBlock()
+
+    videoBlock();
 
 
 

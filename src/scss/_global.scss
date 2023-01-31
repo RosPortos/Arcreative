@@ -15,7 +15,7 @@ body {
     padding: 0 vw(15px);
 }
 
-.page {
+.page-site {
     position: relative;
     overflow: hidden;
     min-height: 100vh;
@@ -122,7 +122,7 @@ body {
         width: vw(440px);
         height: vw(400px);
         right: 0;
-        top: vw(-3px);
+        top: vw(-4px);
         z-index: -1;
     }
 }

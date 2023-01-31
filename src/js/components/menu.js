@@ -29,7 +29,16 @@ menu();
 
 function headerHide() {
     const header = document.querySelector(".header");
+    const page = document.querySelector(".page-site");
+    let scrolledWindow = scrollY;
     let scrollPrev = 0;
+
+    if (scrolledWindow > 10) {
+        header.classList.add('header-black');
+    } else {
+        header.classList.remove('header-black');
+    }
+
 
     window.addEventListener('scroll', function () {
         let scrolled = scrollY;
