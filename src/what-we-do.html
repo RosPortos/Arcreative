@@ -1,6 +1,6 @@
 @include('partials/head.html')
 
-<div class="page">
+<div class="page-site">
     @include('partials/header.html')
 
     <main class="main">
@@ -49,24 +49,92 @@
                             </a>
                         </div>
                         <div class="ofer-sec-item__img">
-                            <img loading="lazy" src="img/section/latest-ideas-img.png" alt="img">
+                            <img loading="lazy" src="img/section/latest-ideas-img3.png" alt="img">
                         </div>
                     </div>
                     <div class="ofer-sec-item">
                         <div class="ofer-sec-item__text">
-                            <h3 class="fz38">
-                                How the right visual <br> content will turn <br> medical device <br> prospects into <br>
-                                buyers
+                            <h3 class="fz28">
+                                3Dv Illustrations
                             </h3>
+                            <div>
+                                <p class="fz18">
+                                    Showcase your product in breathtaking detail! Get realistic, precise
+                                    three-dimensional renderings that look downright lifelike. Perfect for websites and
+                                    social media campaigns, as well as virtual demonstrations
+                                </p>
+                            </div>
+                            <a href="#" class="ofer-sec__btn btn btn--border">
+                                Learn more
+                            </a>
                         </div>
                         <div class="ofer-sec-item__img">
-                            <img loading="lazy" src="img/section/latest-ideas-img2.png" alt="img">
+                            <img loading="lazy" src="img/section/latest-ideas-img4.png" alt="img">
+                        </div>
+                    </div>
+                    <div class="ofer-sec-item bfr-decor">
+                        <div class="ofer-sec-item__text">
+                            <h3 class="fz28">
+                                Marketing explanatory videos
+                            </h3>
+                            <div>
+                                <p class="fz18">
+                                    Unlock the full power of your product with this comprehensive production solution.
+                                    All messages and technology features will be clearly demonstrated, ensuring that you
+                                    leave a lasting impression across all channels!
+                                </p>
+                            </div>
+                            <a href="#" class="ofer-sec__btn btn btn--border">
+                                Learn more
+                            </a>
+                        </div>
+                        <div class="ofer-sec-item__img">
+                            <img loading="lazy" src="img/section/latest-ideas-img5.png" alt="img">
                         </div>
                     </div>
                 </div>
-                <a href="#" class="ofer-sec__btn btn btn--border">
-                    More Insights
-                </a>
+            </div>
+        </section>
+
+        @include('partials/comment.html')
+
+        <section class="contact">
+            <div class="container">
+                <h2 class="fz28">
+                    Let's talk
+                </h2>
+                <h2 class="fz28">
+                    Contact us to set up a meeting. <br>
+                    We'd love to speak with you
+                </h2>
+                <div class="contact__form">
+                    <form action="#">
+                        <div class="form__wrap">
+                            <div class="form__input">
+                                <input name="first-name" placeholder="First name *" type="text">
+                            </div>
+                            <div class="form__input">
+                                <input name="last-name" placeholder="Last name*" type="text">
+                            </div>
+                            <div class="form__input">
+                                <input name="email" placeholder="Work email *" type="email">
+                            </div>
+                            <div class="form__input">
+                                <input name="country" placeholder="Country *" type="text">
+                            </div>
+                            <div class="form__input">
+                                <input name="phone" placeholder="Phone*" type="tel">
+                            </div>
+                            <div class="form__input">
+                                <input name="how" placeholder="How did you hear about us" type="email">
+                            </div>
+                            <div class="form__textarea">
+                                <textarea name="comment" placeholder="Message"></textarea>
+                            </div>
+                            <button class="form__btn btn btn--border" type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 

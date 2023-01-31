@@ -2,6 +2,7 @@
     padding-top: vw(44px);
     h2 {
         text-align: right;
+        padding-right: vw(78px);
     }
     .container {
         max-width: 74.25vw;
@@ -24,13 +25,21 @@
         flex-direction: row-reverse;
         justify-content: flex-end;
     }
+    &.bfr-decor {
+        &::before {
+            top: inherit;
+            bottom: vw(-70px);
+            height: vw(172px);
+            right: vw(-200px);
+        }
+    }
 }
 .ofer-sec-item__text {
     font-weight: 700;
     color: #ffffff;
     height: fit-content;
     position: relative;
-    padding: vw(25px) 0 vw(25px) vw(30px);
+    padding: vw(5px) 0 0 vw(30px);
     &::before {
         position: absolute;
         content: "";
