@@ -12,11 +12,12 @@
     }
     &.height-auto {
         height: auto;
-        margin-bottom: 30px;
+        margin-bottom: vw(30px);
     }
     &.padding-big {
         .container {
-            padding: vw(150px) vw(15px);
+            padding: vw(100px) vw(15px) vw(50px);
+            max-width: vw(1156px);
         }
     }
     &.bottom-shadow {
@@ -29,7 +30,7 @@
                     rgba(13, 7, 37, 0) 0%,
                     #0d0725 100%
                 );
-                height: 166px;
+                height: vw(166px);
                 width: 100%;
                 left: 0;
                 bottom: -1px;
@@ -38,16 +39,9 @@
     }
 }
 
-.swiper {
-}
-.promo-swiper {
-}
-.swiper-wrapper {
-}
-.swiper-slide {
-}
 .promo-item {
     position: relative;
+    height: 100%;
     img {
         position: absolute;
         width: 100%;
@@ -60,8 +54,8 @@
     p {
         font-weight: 300;
         color: #ffffff;
-        margin-top: 26px;
-        max-width: 568px;
+        margin-top: vw(26px);
+        max-width: vw(568px);
     }
 }
 
