@@ -6,6 +6,21 @@
     .container {
         max-width: vw(1041px);
     }
+    &.provide-big {
+        .container {
+            max-width: vw(1330px);
+        }
+        .provide__wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: vw(40px);
+            max-height: inherit;
+            .provide-item {
+                width: 100%;
+                height: vw(365px);
+            }
+        }
+    }
 }
 
 .provide__wrapper {
@@ -25,6 +40,8 @@
     flex-direction: column;
     border-radius: vw(10px);
     overflow: hidden;
+    font-weight: 700;
+    color: #ffffff;
     &:nth-child(1) {
         height: vw(381px);
     }

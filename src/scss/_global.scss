@@ -4,13 +4,14 @@
 
 body {
     background: #0d0725;
+    color: #ffffff;
     &.scroll-hide {
         overflow: hidden;
     }
 }
 
 .container {
-    max-width: vw(1170px);
+    max-width: vw(1070px);
     margin: 0 auto;
     padding: 0 vw(15px);
 }
@@ -124,5 +125,14 @@ body {
         right: 0;
         top: vw(-4px);
         z-index: -1;
+    }
+}
+
+.text-block {
+    margin-top: vw(100px);
+    .container {
+        color: #ffffff;
+        font-weight: 400;
+        line-height: 161.55%;
     }
 }
