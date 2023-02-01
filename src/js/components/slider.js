@@ -18,3 +18,24 @@ const promoSwiper = new Swiper(".promo-swiper", {
         },
     },
 });
+
+
+/* const swiper = new Swiper(".class", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    speed: 1000,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        1150: {
+            slidesPerView: 3,
+        },
+    },
+}); */
