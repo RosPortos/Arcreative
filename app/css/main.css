@@ -541,6 +541,7 @@ h3 span {
   justify-content: space-between;
   align-items: center;
   height: 3.4722222222vw;
+  gap: 6.25vw;
 }
 .partners__wrapper a {
   height: 100%;
@@ -550,7 +551,7 @@ h3 span {
   width: 14.9305555556vw;
 }
 .partners__wrapper a img {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
