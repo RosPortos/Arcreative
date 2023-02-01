@@ -1,0 +1,79 @@
+@include('partials/head.html')
+
+<div class="page-site" id="page-site">
+    @include('partials/header.html')
+
+    <main class="main">
+
+        <section class="promo bottom-shadow height-auto">
+            <div class="promo-item">
+                <div class="container">
+                    <div class="promo-ofer">
+                        <h2 class="fz58">
+                            Contact Us
+                        </h2>
+                    </div>
+                </div>
+                <img src="img/section/promo-img5.jpg" alt="img">
+            </div>
+        </section>
+
+        <div class="text-block text-block-wrap">
+            <div class="container fz32">
+                <p>
+                    <b>
+                        Ready to take your technology to the next level with visually <br> stunning and
+                        easy-to-understand
+                        content? <br>
+                        Contact us now, and let's see how we can help.
+                    </b>
+                </p>
+            </div>
+        </div>
+
+        <section class="contact pd-sec">
+            <div class="container">
+                <div class="contact__form">
+                    <form action="#">
+                        <div class="form__wrap">
+                            <div class="form__input">
+                                <input name="first-name" placeholder="First name *" type="text">
+                            </div>
+                            <div class="form__input">
+                                <input name="last-name" placeholder="Last name*" type="text">
+                            </div>
+                            <div class="form__input">
+                                <input name="email" placeholder="Work email *" type="email">
+                            </div>
+                            <div class="form__input">
+                                <input name="country" placeholder="Country *" type="text">
+                            </div>
+                            <div class="form__input">
+                                <input name="phone" placeholder="Phone*" type="tel">
+                            </div>
+                            <div class="form__input">
+                                <input name="how" placeholder="How did you hear about us" type="email">
+                            </div>
+                            <div class="form__textarea">
+                                <textarea name="comment" placeholder="Message"></textarea>
+                            </div>
+                            <button class="form__btn btn btn--border" type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <div class="bottom-page-block">
+            <img loading="lazy" src="img/section/bottom-page-block.jpg" alt="img">
+            <h2 class="container fz38 text-center">
+                Book a meeting now and have your 3D illustrations ready by next week
+            </h2>
+        </div>
+
+    </main>
+
+    @include('partials/footer.html')
+</div>
+
+@include('partials/scripts.html')

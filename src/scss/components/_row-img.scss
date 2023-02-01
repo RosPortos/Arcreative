@@ -18,6 +18,11 @@
         border-radius: vw(11px);
         overflow: hidden;
         display: flex;
+        &:hover {
+            img {
+                transform: scale(1.3);
+            }
+        }
         &::after {
             content: "";
             width: vw(20px);
@@ -33,6 +38,7 @@
         display: block;
         margin-right: vw(30px);
         border-radius: vw(11px);
+        transition: transform 2s ease-in-out;
     }
     .preview {
         width: calc(100% - 20px);

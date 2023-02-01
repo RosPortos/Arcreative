@@ -58,8 +58,8 @@ body {
             transition: transform 0.3s ease-in-out;
         }
         img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: vw(22px);
+            max-height: vw(20px);
             object-fit: cover;
         }
     }
@@ -134,5 +134,24 @@ body {
         color: #ffffff;
         font-weight: 400;
         line-height: 161.55%;
+        p {
+            margin-bottom: vw(50px);
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
+    &.text-block-wrap {
+        .container {
+            width: vw(1070px);
+            background: #120a2f;
+            border-radius: vw(28px);
+            padding: vw(45px);
+            line-height: 137.55%;
+        }
+    }
+}
+
+.text-left {
+    text-align: left !important;
 }

@@ -1,0 +1,25 @@
+.team {
+    .comment__info {
+        justify-content: flex-start;
+        align-items: flex-end;
+        gap: vw(27px);
+        &::after {
+            display: none;
+        }
+    }
+    .comment__icon {
+        width: vw(146px);
+        height: vw146px();
+        border-radius: vw(29px);
+        margin-top: vw(-60px);
+        &::before {
+            border-radius: vw(29px);
+        }
+        img {
+            border-radius: vw(29px);
+        }
+    }
+    .fz28 {
+        font-weight: 700;
+    }
+}

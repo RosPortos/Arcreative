@@ -26,6 +26,7 @@
         display: block;
         transition: all 0.3s linear;
         z-index: 2222;
+        pointer-events: none;
         &:nth-child(1) {
             top: vw(27px);
         }
