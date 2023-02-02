@@ -1,6 +1,12 @@
 "use strict";
 
-document.addEventListener('DOMContentLoaded', function () {});
+document.addEventListener('DOMContentLoaded', function () {
+  var activItem = document.querySelector('.mob-center');
+  activItem.scrollIntoView({
+    inline: "center",
+    block: 'end'
+  });
+});
 "use strict";
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
