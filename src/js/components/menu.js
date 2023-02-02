@@ -58,9 +58,7 @@ function headerHide() {
     });
 }
 
-if (window.innerWidth > 991) {
-    headerHide();
-}
+headerHide();
 
 
 var keys = {

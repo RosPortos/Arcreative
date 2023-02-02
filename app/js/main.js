@@ -151,9 +151,7 @@ function headerHide() {
     scrollPrev = scrolled;
   });
 }
-if (window.innerWidth > 991) {
-  headerHide();
-}
+headerHide();
 var keys = {
   37: 1,
   38: 1,
@@ -292,6 +290,26 @@ var promoSwiper = new Swiper(".promo-swiper", {
     }
   }
 });
+
+/* const swiper = new Swiper(".class", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    speed: 1000,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        1150: {
+            slidesPerView: 3,
+        },
+    },
+}); */
 "use strict";
 
 document.addEventListener('DOMContentLoaded', function () {
