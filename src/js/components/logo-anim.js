@@ -7,6 +7,7 @@ let size = 3;
 let subarray = [];
 let left = [16, 18, 17];
 let count = 0;
+let countMob = 0;
 
 logosBox.forEach(item => {
     let clone = item.cloneNode(true);
@@ -81,32 +82,66 @@ logosImg.forEach(can => {
 });
 
 
+if (window.innerWidth > 991) {
+    gsap.to(logosBoxAfter, {
+        x: "-=100vw",
+        duration: 50,
+        ease: "none",
+        repeat: -1,
+        yoyo: true
+    });
 
-gsap.to(logosBoxAfter, {
-    x: "-=100vw",
-    duration: 50,
-    ease: "none",
-    repeat: -1,
-    yoyo: true
-});
+    subarray.forEach((array, i) => {
+        if (array.length == 1) {
+            array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            count++
+        } else if (array.length == 2) {
+            array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            array[1].style.cssText = `left: ${left[1] * count}vw; top: ${10 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            count++
+        } else {
+            array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            array[1].style.cssText = `left: ${left[1] * count}vw; top: ${10 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            array[2].style.cssText = `left: ${left[2] * count}vw; top: ${21 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            count++
+        }
+    })
+} else {
+    gsap.to(logosBoxAfter, {
+        x: "-=200vw",
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+        yoyo: true
+    });
+    subarray.forEach((array, i) => {
+        if (array.length == 1) {
+            array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            count++
+        } else if (array.length == 2) {
+            array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            array[1].style.cssText = `left: ${left[1] * count}vw; top: ${23 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            count++
+        } else {
+            array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            array[1].style.cssText = `left: ${left[1] * count}vw; top: ${23 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            array[2].style.cssText = `left: ${left[2] * count}vw; top: ${40 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
+            count++
+        }
+        countMob = 1;
 
-subarray.forEach((array, i) => {
-    if (array.length == 1) {
-        array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
-        count++
-    } else if (array.length == 2) {
-        array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
-        array[1].style.cssText = `left: ${left[1] * count}vw; top: ${10 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
-        count++
-    } else {
-        array[0].style.cssText = `left: ${left[0] * count}vw; top: ${getR(6)}vw;  transform: scale(0.${startScale + getR(4)})`;
-        array[1].style.cssText = `left: ${left[1] * count}vw; top: ${10 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
-        array[2].style.cssText = `left: ${left[2] * count}vw; top: ${21 + getR(4)}vw;  transform: scale(0.${startScale + getR(4)})`;
-        count++
-    }
+        if (countMob === 1) {
+            count = count + 0.7
+        }
+    })
+}
 
 
-})
+
+
+
+
+
 
 
 

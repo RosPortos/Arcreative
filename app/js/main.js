@@ -24,6 +24,7 @@ var size = 3;
 var subarray = [];
 var left = [16, 18, 17];
 var count = 0;
+var countMob = 0;
 logosBox.forEach(function (item) {
   var clone = item.cloneNode(true);
   parentImg.appendChild(clone);
@@ -84,28 +85,57 @@ logosImg.forEach(function (can) {
     };
   }
 });
-gsap.to(logosBoxAfter, {
-  x: "-=100vw",
-  duration: 50,
-  ease: "none",
-  repeat: -1,
-  yoyo: true
-});
-subarray.forEach(function (array, i) {
-  if (array.length == 1) {
-    array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
-    count++;
-  } else if (array.length == 2) {
-    array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
-    array[1].style.cssText = "left: ".concat(left[1] * count, "vw; top: ").concat(10 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
-    count++;
-  } else {
-    array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
-    array[1].style.cssText = "left: ".concat(left[1] * count, "vw; top: ").concat(10 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
-    array[2].style.cssText = "left: ".concat(left[2] * count, "vw; top: ").concat(21 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
-    count++;
-  }
-});
+if (window.innerWidth > 991) {
+  gsap.to(logosBoxAfter, {
+    x: "-=100vw",
+    duration: 50,
+    ease: "none",
+    repeat: -1,
+    yoyo: true
+  });
+  subarray.forEach(function (array, i) {
+    if (array.length == 1) {
+      array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      count++;
+    } else if (array.length == 2) {
+      array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      array[1].style.cssText = "left: ".concat(left[1] * count, "vw; top: ").concat(10 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      count++;
+    } else {
+      array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      array[1].style.cssText = "left: ".concat(left[1] * count, "vw; top: ").concat(10 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      array[2].style.cssText = "left: ".concat(left[2] * count, "vw; top: ").concat(21 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      count++;
+    }
+  });
+} else {
+  gsap.to(logosBoxAfter, {
+    x: "-=200vw",
+    duration: 40,
+    ease: "none",
+    repeat: -1,
+    yoyo: true
+  });
+  subarray.forEach(function (array, i) {
+    if (array.length == 1) {
+      array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      count++;
+    } else if (array.length == 2) {
+      array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      array[1].style.cssText = "left: ".concat(left[1] * count, "vw; top: ").concat(23 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      count++;
+    } else {
+      array[0].style.cssText = "left: ".concat(left[0] * count, "vw; top: ").concat(getR(6), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      array[1].style.cssText = "left: ".concat(left[1] * count, "vw; top: ").concat(23 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      array[2].style.cssText = "left: ".concat(left[2] * count, "vw; top: ").concat(40 + getR(4), "vw;  transform: scale(0.").concat(startScale + getR(4), ")");
+      count++;
+    }
+    countMob = 1;
+    if (countMob === 1) {
+      count = count + 0.7;
+    }
+  });
+}
 "use strict";
 
 function menu() {
