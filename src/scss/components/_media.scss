@@ -470,4 +470,28 @@
     .team .comment__icon::before {
         border-radius: 4.013889vw;
     }
+    .ofer-sec-item__img.video-wrapper {
+        width: 100%;
+        height: 61.4486vw;
+    }
+    .ofer-sec-item__img.video-wrapper .play-btn {
+        width: 18.92523vw;
+        height: 18.92523vw;
+    }
+    .bottom-page-block a {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        &::before {
+            height: 0.5vw;
+        }
+    }
+    .not-color {
+        span {
+            display: inline-block;
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+    }
 }

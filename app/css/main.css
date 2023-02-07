@@ -273,6 +273,11 @@ h3 span {
   text-align: center;
 }
 
+.fw-b {
+  font-weight: 700 !important;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .fz58 {
   font-size: 4.0277777778vw;
   line-height: 4.7222222222vw;
@@ -308,6 +313,9 @@ h3 span {
   line-height: 161.55%;
   font-weight: 300;
   color: #ffffff;
+}
+.fz18 b {
+  font-weight: 700;
 }
 
 .fz42 {
@@ -361,7 +369,7 @@ h3 span {
 }
 .header__right .talk::before {
   content: "";
-  background-image: url("../../img/icon/talk.svg");
+  background-image: url("../img/icon/talk.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -849,7 +857,10 @@ h3 span {
 }
 .ofer-sec h2 {
   text-align: right;
-  padding-right: 5.4166666667vw;
+  padding-right: 6.9444444444vw;
+}
+.ofer-sec h2.pr-small {
+  padding-right: 6.1111111111vw;
 }
 .ofer-sec .container {
   max-width: 74.25vw;
@@ -908,11 +919,27 @@ h3 span {
   margin-bottom: 1.3888888889vw;
 }
 
+.ofer-sec-item__img.video-wrapper {
+  width: 38.47222vw;
+  height: 21.66667vw;
+}
+.ofer-sec-item__img.video-wrapper .play-btn {
+  width: 7.01389vw;
+  height: 7.01389vw;
+}
+.ofer-sec-item__img.video-wrapper .player {
+  width: 100%;
+  height: 100%;
+}
 .ofer-sec-item__img img {
   max-width: 100%;
   max-height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.not-color span {
+  color: #ffffff;
 }
 
 .ofer-sec-item__text {
@@ -1057,7 +1084,6 @@ h3 span {
   height: 100%;
   left: 0.2083333333vw;
   top: 0.2083333333vw;
-  z-index: -1;
   width: calc(100% - 6px);
   height: calc(100% - 6px);
   border-radius: 0.6944444444vw;
@@ -1070,6 +1096,7 @@ h3 span {
   left: 0;
   top: 0;
   transition: opacity 0.3s ease-in-out;
+  z-index: 1;
 }
 .preview.hide, .preview.not-visible {
   opacity: 0;
@@ -1099,7 +1126,7 @@ h3 span {
 }
 .comment__info::after {
   content: "";
-  background-image: url("../../img/icon/comment-icon.svg");
+  background-image: url("../img/icon/comment-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   width: 8.4722222222vw;
@@ -1725,6 +1752,29 @@ h3 span {
   }
   .team .comment__icon::before {
     border-radius: 4.013889vw;
+  }
+  .ofer-sec-item__img.video-wrapper {
+    width: 100%;
+    height: 61.4486vw;
+  }
+  .ofer-sec-item__img.video-wrapper .play-btn {
+    width: 18.92523vw;
+    height: 18.92523vw;
+  }
+  .bottom-page-block a {
+    display: block;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .bottom-page-block a::before {
+    height: 0.5vw;
+  }
+  .not-color span {
+    display: inline-block;
+  }
+  .not-color span::first-letter {
+    text-transform: uppercase;
   }
 }
 /*# sourceMappingURL=main.css.map */
