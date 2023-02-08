@@ -397,44 +397,7 @@ var promoSwiper = new Swiper(".promo-swiper", {
             }
         });
 
-        videoWrapHover.forEach(item => {
-            let previeBlock = item.querySelector('.preview');
-            let player = item.querySelector('.player');
-            let playerVideoId = previeBlock.getAttribute('data-video-id');
-            let playerId = player.getAttribute('id');
-            let playerVideo;
-
-            window.YT.ready(function () {
-                playerVideo = new window.YT.Player(playerId, {
-                    videoId: playerVideoId,
-                    playerVars: {
-                        'muted': 1,
-                        'autoplay': 0,
-                        'disablekb': 1,
-                        'controls': 0,
-                        'iv_load_policy': 3,
-                        'loop': 1,
-                        'showinfo': 0,
-                        'modestbranding': 1
-                    },
-                    events: {
-                        'onReady': onPlayerReady,
-                    }
-                });
-            });
-
-            function onPlayerReady() {
-                item.addEventListener('mouseover', function () {
-                    playerVideo.playVideo()
-                    previeBlock.classList.add('hide')
-                });
-
-                item.addEventListener('mouseout', function () {
-                    playerVideo.pauseVideo()
-                    previeBlock.classList.remove('hide')
-                });
-            }
-        });
+        
     }
 
 
@@ -455,18 +418,15 @@ document.addEventListener('DOMContentLoaded', function () {
       el.setAttribute('id', "player-".concat(i + 1));
     });
     function stopVideo() {
-      var videosH = document.querySelectorAll("video");
-      videosH.forEach(function (video) {
+      document.querySelectorAll("video").forEach(function (video) {
         video.pause();
       });
-      var videosY = document.querySelectorAll("iframe[src^='https://www.youtube.com']");
-      for (var i = 0; i < videosY.length; i++) {
-        videosY[i].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-      }
-      var videosV = document.querySelectorAll("iframe[src^='https://player.vimeo.com']");
-      for (var i = 0; i < videosV.length; i++) {
-        videosV[i].contentWindow.postMessage('{"method":"pause"}', 'https://player.vimeo.com');
-      }
+      document.querySelectorAll("iframe[src^='https://www.youtube.com']").forEach(function (item) {
+        item.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      });
+      document.querySelectorAll("iframe[src^='https://player.vimeo.com']").forEach(function (item) {
+        item.contentWindow.postMessage('{"method":"pause"}', 'https://player.vimeo.com');
+      });
     }
     videoWrap.forEach(function (item) {
       var previeBlock = item.querySelector('.preview');
@@ -566,6 +526,64 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   videoBlock();
+  var videoWrapHover = document.querySelectorAll('.video-wrapper-hover.youtube-hover');
+  videoWrapHover.forEach(function (item) {
+    var previeBlock = item.querySelector('.preview');
+    var player = item.querySelector('.player');
+    var playerVideoId = previeBlock.getAttribute('data-video-id');
+    var playerId = player.getAttribute('id');
+    var playerVideo;
+    window.YT.ready(function () {
+      playerVideo = new window.YT.Player(playerId, {
+        videoId: playerVideoId,
+        playerVars: {
+          'muted': 1,
+          'autoplay': 0,
+          'disablekb': 1,
+          'controls': 0,
+          'iv_load_policy': 3,
+          'loop': 1,
+          'showinfo': 0,
+          'modestbranding': 1
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    });
+    function onPlayerReady() {
+      item.addEventListener('mouseover', function () {
+        playerVideo.playVideo();
+        previeBlock.classList.add('hide');
+      });
+      item.addEventListener('mouseout', function () {
+        playerVideo.pauseVideo();
+        previeBlock.classList.remove('hide');
+      });
+    }
+  });
+  var videoWrapHover2 = document.querySelectorAll('.video-wrapper-hover.video-hover');
+  videoWrapHover2.forEach(function (item) {
+    var previeBlock = item.querySelector('.preview');
+    var player = item.querySelector('.player');
+    var playerVideoId = previeBlock.getAttribute('data-video-id');
+    var video;
+    if (!previeBlock.classList.contains('init')) {
+      previeBlock.classList.add('init');
+      player.innerHTML = "\n                                <video class=\"default-video\"muted playsinline>\n                                    <source src=\"".concat(playerVideoId, "\">\n                                </video>   \n                            ");
+      video = item.querySelector('.default-video');
+      setTimeout(function () {
+        item.addEventListener('mouseover', function () {
+          video.play();
+          previeBlock.classList.add('hide');
+        });
+        item.addEventListener('mouseout', function () {
+          video.pause();
+          previeBlock.classList.remove('hide');
+        });
+      }, 1000);
+    }
+  });
 });
 "use strict";
 //# sourceMappingURL=main.js.map

@@ -53,44 +53,7 @@
             }
         });
 
-        videoWrapHover.forEach(item => {
-            let previeBlock = item.querySelector('.preview');
-            let player = item.querySelector('.player');
-            let playerVideoId = previeBlock.getAttribute('data-video-id');
-            let playerId = player.getAttribute('id');
-            let playerVideo;
-
-            window.YT.ready(function () {
-                playerVideo = new window.YT.Player(playerId, {
-                    videoId: playerVideoId,
-                    playerVars: {
-                        'muted': 1,
-                        'autoplay': 0,
-                        'disablekb': 1,
-                        'controls': 0,
-                        'iv_load_policy': 3,
-                        'loop': 1,
-                        'showinfo': 0,
-                        'modestbranding': 1
-                    },
-                    events: {
-                        'onReady': onPlayerReady,
-                    }
-                });
-            });
-
-            function onPlayerReady() {
-                item.addEventListener('mouseover', function () {
-                    playerVideo.playVideo()
-                    previeBlock.classList.add('hide')
-                });
-
-                item.addEventListener('mouseout', function () {
-                    playerVideo.pauseVideo()
-                    previeBlock.classList.remove('hide')
-                });
-            }
-        });
+        
     }
 
 
@@ -104,6 +67,8 @@
 }); */
 
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     function videoBlock() {
 
@@ -115,20 +80,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         function stopVideo() {
-            var videosH = document.querySelectorAll("video");
-            videosH.forEach(function (video) {
+            document.querySelectorAll("video").forEach(function (video) {
                 video.pause();
             });
-
-            var videosY = document.querySelectorAll("iframe[src^='https://www.youtube.com']");
-            for (var i = 0; i < videosY.length; i++) {
-                videosY[i].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-            }
-
-            var videosV = document.querySelectorAll("iframe[src^='https://player.vimeo.com']");
-            for (var i = 0; i < videosV.length; i++) {
-                videosV[i].contentWindow.postMessage('{"method":"pause"}', 'https://player.vimeo.com');
-            }
+            document.querySelectorAll("iframe[src^='https://www.youtube.com']").forEach(item => {
+                item.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            });
+            document.querySelectorAll("iframe[src^='https://player.vimeo.com']").forEach(item => {
+                item.contentWindow.postMessage('{"method":"pause"}', 'https://player.vimeo.com');
+            });
         }
 
         videoWrap.forEach(item => {
@@ -141,11 +101,10 @@ document.addEventListener('DOMContentLoaded', function () {
             let playerVideo;
             let video;
 
-
-
             if (type === "youtube") {
                 previeBlock.addEventListener('click', function () {
                     stopVideo()
+
                     if (!previeBlock.classList.contains('init')) {
                         previeBlock.classList.add('init')
 
@@ -193,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (type === "vimeo") {
                 previeBlock.addEventListener('click', function () {
                     stopVideo()
+
                     function playVideo() {
                         previeBlock.classList.add('hide')
                         playerVideo.play();
@@ -263,11 +223,92 @@ document.addEventListener('DOMContentLoaded', function () {
     videoBlock();
 
 
+    const videoWrapHover = document.querySelectorAll('.video-wrapper-hover.youtube-hover')
 
+    videoWrapHover.forEach(item => {
+        let previeBlock = item.querySelector('.preview');
+        let player = item.querySelector('.player');
+        let playerVideoId = previeBlock.getAttribute('data-video-id');
+        let playerId = player.getAttribute('id');
+        let playerVideo;
+
+        window.YT.ready(function () {
+            playerVideo = new window.YT.Player(playerId, {
+                videoId: playerVideoId,
+                playerVars: {
+                    'muted': 1,
+                    'autoplay': 0,
+                    'disablekb': 1,
+                    'controls': 0,
+                    'iv_load_policy': 3,
+                    'loop': 1,
+                    'showinfo': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                }
+            });
+        });
+
+        function onPlayerReady() {
+            item.addEventListener('mouseover', function () {
+                playerVideo.playVideo()
+                previeBlock.classList.add('hide')
+            });
+
+            item.addEventListener('mouseout', function () {
+                playerVideo.pauseVideo()
+                previeBlock.classList.remove('hide')
+            });
+        }
+    });
+
+    const videoWrapHover2 = document.querySelectorAll('.video-wrapper-hover.video-hover')
+
+    videoWrapHover2.forEach(item => {
+        let previeBlock = item.querySelector('.preview');
+        let player = item.querySelector('.player');
+        let playerVideoId = previeBlock.getAttribute('data-video-id');
+        let video;
+
+        if (!previeBlock.classList.contains('init')) {
+            previeBlock.classList.add('init')
+
+            player.innerHTML =
+                `
+                                <video class="default-video"muted playsinline>
+                                    <source src="${playerVideoId}">
+                                </video>   
+                            `
+                ;
+
+            video = item.querySelector('.default-video')
+
+            setTimeout(() => {
+                item.addEventListener('mouseover', function () {
+                    video.play();
+                    previeBlock.classList.add('hide')
+                });
+
+                item.addEventListener('mouseout', function () {
+                    video.pause();
+                    previeBlock.classList.remove('hide')
+                });
+            }, 1000);
+
+
+
+        }
+
+
+    });
 
 
 
 });
+
+
 
 
 
