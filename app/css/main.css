@@ -1792,5 +1792,8 @@ h3 span {
   .not-color span::first-letter {
     text-transform: uppercase;
   }
+  .clients h2 span {
+    display: block;
+  }
 }
 /*# sourceMappingURL=main.css.map */
