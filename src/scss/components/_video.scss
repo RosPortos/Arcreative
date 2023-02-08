@@ -18,6 +18,13 @@
     width: calc(100% - 6px);
     height: calc(100% - 6px);
     border-radius: vw(10px);
+    video {
+        height: 100%;
+        width: 100%;
+    }
+    > div {
+        height: 100%;
+    }
 }
 
 .preview {

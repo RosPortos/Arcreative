@@ -31,7 +31,7 @@ function rowAnim(direction, elements) {
     const tl = gsap.to(blocks, {
         x: `${direction}=${totalWidth}`,
         repeat: -1,
-        duration: 205,
+        duration: 25,
         ease: "none",
         repeatRefresh: true,
         modifiers: {
