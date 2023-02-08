@@ -223,61 +223,43 @@ document.addEventListener('DOMContentLoaded', function () {
     videoBlock();
 
 
-    const videoWrapHover = document.querySelectorAll('.video-wrapper-hover.youtube-hover')
+    const videoWrapHover = document.querySelectorAll('.video-wrapper-hover')
 
     videoWrapHover.forEach(item => {
         let previeBlock = item.querySelector('.preview');
         let player = item.querySelector('.player');
         let playerVideoId = previeBlock.getAttribute('data-video-id');
+        let playerVideoType = previeBlock.getAttribute('data-video-type');
         let playerId = player.getAttribute('id');
         let playerVideo;
+        let video;
 
-        window.YT.ready(function () {
-            playerVideo = new window.YT.Player(playerId, {
-                videoId: playerVideoId,
-                playerVars: {
-                    'muted': 1,
-                    'autoplay': 0,
-                    'disablekb': 1,
-                    'controls': 0,
-                    'iv_load_policy': 3,
-                    'loop': 1,
-                    'showinfo': 0,
-                    'modestbranding': 1
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                }
+        if (playerVideoType === 'vimeo') {
+            playerVideo = new Vimeo.Player(playerId, {
+                id: playerVideoId,
+                responsive: true,
+                loop: true,
+                dnt: false,
+                title: false,
+                controls: false
             });
-        });
 
-        function onPlayerReady() {
+            playerVideo.setVolume(0);
             item.addEventListener('mouseover', function () {
-                playerVideo.playVideo()
+                playerVideo.play();
                 previeBlock.classList.add('hide')
             });
 
             item.addEventListener('mouseout', function () {
-                playerVideo.pauseVideo()
+                playerVideo.pause();
                 previeBlock.classList.remove('hide')
             });
         }
-    });
 
-    const videoWrapHover2 = document.querySelectorAll('.video-wrapper-hover.video-hover')
-
-    videoWrapHover2.forEach(item => {
-        let previeBlock = item.querySelector('.preview');
-        let player = item.querySelector('.player');
-        let playerVideoId = previeBlock.getAttribute('data-video-id');
-        let video;
-
-        if (!previeBlock.classList.contains('init')) {
-            previeBlock.classList.add('init')
-
+        if (playerVideoType === 'video') {
             player.innerHTML =
                 `
-                                <video class="default-video"muted playsinline>
+                                <video class="default-video"muted loop playsinline>
                                     <source src="${playerVideoId}">
                                 </video>   
                             `
@@ -285,24 +267,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
             video = item.querySelector('.default-video')
 
-            setTimeout(() => {
-                item.addEventListener('mouseover', function () {
-                    video.play();
-                    previeBlock.classList.add('hide')
-                });
+            item.addEventListener('mouseover', function () {
+                video.play();
+                previeBlock.classList.add('hide')
+            });
 
-                item.addEventListener('mouseout', function () {
-                    video.pause();
-                    previeBlock.classList.remove('hide')
-                });
-            }, 1000);
-
-
-
+            item.addEventListener('mouseout', function () {
+                video.pause();
+                previeBlock.classList.remove('hide')
+            });
         }
 
 
     });
+
 
 
 

@@ -526,62 +526,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   videoBlock();
-  var videoWrapHover = document.querySelectorAll('.video-wrapper-hover.youtube-hover');
+  var videoWrapHover = document.querySelectorAll('.video-wrapper-hover');
   videoWrapHover.forEach(function (item) {
     var previeBlock = item.querySelector('.preview');
     var player = item.querySelector('.player');
     var playerVideoId = previeBlock.getAttribute('data-video-id');
+    var playerVideoType = previeBlock.getAttribute('data-video-type');
     var playerId = player.getAttribute('id');
     var playerVideo;
-    window.YT.ready(function () {
-      playerVideo = new window.YT.Player(playerId, {
-        videoId: playerVideoId,
-        playerVars: {
-          'muted': 1,
-          'autoplay': 0,
-          'disablekb': 1,
-          'controls': 0,
-          'iv_load_policy': 3,
-          'loop': 1,
-          'showinfo': 0,
-          'modestbranding': 1
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
+    var video;
+    if (playerVideoType === 'vimeo') {
+      playerVideo = new Vimeo.Player(playerId, {
+        id: playerVideoId,
+        responsive: true,
+        loop: true,
+        dnt: false,
+        title: false,
+        controls: false
       });
-    });
-    function onPlayerReady() {
+      playerVideo.setVolume(0);
       item.addEventListener('mouseover', function () {
-        playerVideo.playVideo();
+        playerVideo.play();
         previeBlock.classList.add('hide');
       });
       item.addEventListener('mouseout', function () {
-        playerVideo.pauseVideo();
+        playerVideo.pause();
         previeBlock.classList.remove('hide');
       });
     }
-  });
-  var videoWrapHover2 = document.querySelectorAll('.video-wrapper-hover.video-hover');
-  videoWrapHover2.forEach(function (item) {
-    var previeBlock = item.querySelector('.preview');
-    var player = item.querySelector('.player');
-    var playerVideoId = previeBlock.getAttribute('data-video-id');
-    var video;
-    if (!previeBlock.classList.contains('init')) {
-      previeBlock.classList.add('init');
-      player.innerHTML = "\n                                <video class=\"default-video\"muted playsinline>\n                                    <source src=\"".concat(playerVideoId, "\">\n                                </video>   \n                            ");
+    if (playerVideoType === 'video') {
+      player.innerHTML = "\n                                <video class=\"default-video\"muted loop playsinline>\n                                    <source src=\"".concat(playerVideoId, "\">\n                                </video>   \n                            ");
       video = item.querySelector('.default-video');
-      setTimeout(function () {
-        item.addEventListener('mouseover', function () {
-          video.play();
-          previeBlock.classList.add('hide');
-        });
-        item.addEventListener('mouseout', function () {
-          video.pause();
-          previeBlock.classList.remove('hide');
-        });
-      }, 1000);
+      item.addEventListener('mouseover', function () {
+        video.play();
+        previeBlock.classList.add('hide');
+      });
+      item.addEventListener('mouseout', function () {
+        video.pause();
+        previeBlock.classList.remove('hide');
+      });
     }
   });
 });
